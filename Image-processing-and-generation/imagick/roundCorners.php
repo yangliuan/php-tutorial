@@ -28,7 +28,7 @@ $shape->roundRectangle(0, 0, $width - 1, $height - 1, $cornerRadius, $cornerRadi
 
 $mask->drawImage($shape);
 
-//吧萌宝
+//合并图片
 $image->compositeImage($mask, Imagick::COMPOSITE_DSTIN, 0, 0);
 
 $image->writeImage('../img/result.png');
