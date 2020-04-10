@@ -53,13 +53,13 @@ $this->publicKey
 -----END CERTIFICATE-----
 EOD;
         $info = [
-            'paymentItemId' => '200107',
+            'paymentItemId' => 'xxxx',
             'method' => 'trade.pay.qrcode',
             'charset' => 'utf-8',
             'signType' => 'RSA',
             'returnUrl' => 'https://www.demo.com/',
             'notifyUrl' => 'https://www.demo.com/',
-            'bizContent' => '{"outTradeNo":"' . time() . '","partnerId":"267","paymentSceneId":"0110","tradeName":"测试支付2","tradeAmount":"0.01","moneyTypeId":"0","timeout":"15","tradeSummary":"测试","paymentChannelId":"0204"}',
+            'bizContent' => '{"outTradeNo":"' . time() . '","partnerId":"xxx","paymentSceneId":"xxx","tradeName":"测试支付2","tradeAmount":"0.01","moneyTypeId":"0","timeout":"15","tradeSummary":"测试","paymentChannelId":"xxx"}',
             'version' => '2.0',
         ];
         $signature = $this->encrypt3DES($info, $this->privateKey);
