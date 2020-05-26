@@ -14,7 +14,9 @@ $one_dimen_index_a_merge_b_result = array_merge($one_dimen_index_a, $one_dimen_i
 $one_dimen_associative_a_merge_b_result = array_merge($one_dimen_associative_a, $one_dimen_associative_b);
 
 echo 'array_merge 将一个数组的值附加到上一个数组的末尾', '<pre>';
+echo '索引数组', '<pre>';
 print_r($one_dimen_index_a_merge_b_result);
+echo '关联数组', '<pre>';
 print_r($one_dimen_associative_a_merge_b_result);
 
 //+(联合)运算符，运算符把右边的数组元素附加到左边的数组后面，两个数组中都有的键名，则只用左边数组中的，右边的被忽略
@@ -23,9 +25,12 @@ $one_dimen_index_a_union_b_result = $one_dimen_index_a + $one_dimen_index_b;
 $one_dimen_associative_a_union_b_result = $one_dimen_associative_a + $one_dimen_associative_b;
 
 echo '+(联合)运算符，运算符把右边的数组元素附加到左边的数组后面，两个数组中都有的键名，则只用左边数组中的，右边的被忽略', '<pre>';
+echo '索引数组', '<pre>';
 print_r($one_dimen_index_a_union_b_result);
+echo '关联数组', '<pre>';
 print_r($one_dimen_associative_a_union_b_result);
 
+echo '<hr>';
 //===================================================
 //多维索引数组
 $multi_dimen_index_a = [
@@ -61,9 +66,9 @@ $multi_dimen_index_a_merge_b_result = array_merge_recursive($multi_dimen_index_a
 $multi_dimen_associative_a_merge_b_result = array_merge_recursive($multi_dimen_associative_a, $multi_dimen_associative_b);
 
 echo 'array_merge_recursive 递归将一个数组的值附加到上一个数组的末尾', '<pre>';
-echo 'array_merge_recursive 合并多维索引数组', '<pre>';
+echo '多维索引数组', '<pre>';
 print_r($multi_dimen_index_a_merge_b_result);
-echo 'array_merge_recursive 合并多维关联数组', '<pre>';
+echo '多维关联数组', '<pre>';
 print_r($multi_dimen_associative_a_merge_b_result);
 
 //+(联合)运算符，运算符把右边的数组元素附加到左边的数组后面，两个数组中都有的键名，则只用左边数组中的，右边的被忽略
@@ -72,5 +77,7 @@ $multi_dimen_index_a_merge_b_result = $multi_dimen_index_a + $multi_dimen_index_
 $multi_dimen_associative_a_merge_b_result = $multi_dimen_associative_a + $multi_dimen_associative_b;
 
 echo '+(联合)运算符，运算符把右边的数组元素附加到左边的数组后面，两个数组中都有的键名，则只用左边数组中的，右边的被忽略', '<pre>';
+echo '多维索引数组', '<pre>';
 print_r($multi_dimen_index_a_merge_b_result);
+echo '多维关联数组', '<pre>';
 print_r($multi_dimen_associative_a_merge_b_result);
