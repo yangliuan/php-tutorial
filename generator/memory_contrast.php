@@ -23,7 +23,7 @@ foreach ($data as $val) {
     echo $val;
 }
 $end = print_memory_info('结束内存');
-echo '使用',ceil(($end - $start) / 1024),'KB','<br>';
+echo '使用', ceil(($end - $start) / 1024), 'KB', '<br>';
 echo '<hr>';
 unset($data);
 $start = print_memory_info('开始内存');
@@ -32,4 +32,4 @@ foreach ($data as $val) {
     echo $val;
 }
 $end = print_memory_info('结束内存');
-echo '使用',ceil(($end - $start) / 1024),'KB','<br>';
+echo '使用', ceil(($end - $start) / 1024), 'KB', '<br>';
