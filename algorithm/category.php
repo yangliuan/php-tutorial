@@ -82,26 +82,32 @@ function toList($data, $pid = 0, $level = 1)
     return $tree;
 }
 
-$start_time = microtime(true);
+function getParent($data, $id)
+{
+    $arr = array();
+
+    foreach ($data as $v) {
+        if ($v['id'] == $id) {
+            $arr[] = $v;
+            $arr = array_merge(getParent($data, $v['pid']), $arr);
+        }
+    }
+
+    return $arr;
+}
+
 $treeCategory = recurSionToTree($category, 0);
-$end_time = microtime(true);
-var_dump($start_time, $end_time);
 echo '<pre>', 'recurSionToTree', PHP_EOL;
 var_dump($treeCategory);
-echo '执行时间', $end_time - $start_time, PHP_EOL;
 
-$start_time = microtime(true);
 $treeCategory = recurSionToTree($category, 0);
-$end_time = microtime(true);
-var_dump($start_time, $end_time);
 echo '<pre>', 'recurSionToTree', PHP_EOL;
 var_dump($treeCategory);
-echo '执行时间', $end_time - $start_time, PHP_EOL;
 
-$start_time = microtime(true);
 $treeCategory = toList($category, 0);
-$end_time = microtime(true);
-var_dump($start_time, $end_time);
 echo '<pre>', 'toList', PHP_EOL;
 var_dump($treeCategory);
-echo '执行时间', $end_time - $start_time, PHP_EOL;
+
+$parent = getParent($category, 5);
+echo '<pre>', 'getParent', PHP_EOL;
+var_dump($parent);
