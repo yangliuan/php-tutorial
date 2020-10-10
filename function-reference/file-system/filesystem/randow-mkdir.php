@@ -38,5 +38,5 @@ $dirCount = 10;
 $lang = ['zh-cn', 'en', 'number'];
 
 for ($i = 1; $i < $dirCount; $i++) {
-    mkdir(getChar($i, $lang[array_rand($lang)]), 775);
+    mkdir(getChar(mt_rand(5, 50), $lang[array_rand($lang)]), 775);
 }
