@@ -115,10 +115,6 @@ $treeCategory = recurSionToTree($category, 0);
 echo '<pre>', 'recurSionToTree', PHP_EOL;
 var_dump($treeCategory);
 
-$treeCategory = recurSionToTree($category, 0);
-echo '<pre>', 'recurSionToTree', PHP_EOL;
-var_dump($treeCategory);
-
 $treeCategory = toList($category, 0);
 echo '<pre>', 'toList', PHP_EOL;
 var_dump($treeCategory);
