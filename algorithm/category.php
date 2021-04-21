@@ -30,12 +30,15 @@ function recurSionToTree(array $array = [], $pid = 0)
 {
     $result = [];
 
-    foreach ($array as $key => $value) {
+    foreach ($array as $key => $value)
+    {
 
-        if ($value['pid'] == $pid) {
+        if ($value['pid'] == $pid)
+        {
             $children = recurSionToTree($array, $value['id']);
 
-            if ($children) {
+            if ($children)
+            {
                 $value['children'] = $children;
             }
 
@@ -46,20 +49,26 @@ function recurSionToTree(array $array = [], $pid = 0)
     return $result;
 }
 
+//引用遍历成树形结构
 function refToTree($data)
 {
     $items = array();
 
-    foreach ($data as $v) {
+    foreach ($data as $v)
+    {
         $items[$v['id']] = $v;
     }
 
     $tree = array();
 
-    foreach ($items as $k => $item) {
-        if (isset($items[$item['pid']])) {
+    foreach ($items as $k => $item)
+    {
+        if (isset($items[$item['pid']]))
+        {
             $items[$item['pid']]['children'][] = &$items[$k];
-        } else {
+        }
+        else
+        {
             $tree[] = &$items[$k];
         }
     }
@@ -67,12 +76,15 @@ function refToTree($data)
     return $tree;
 }
 
+//遍历成列表
 function toList($data, $pid = 0, $level = 1)
 {
     static $tree = [];
 
-    foreach ($data as $val) {
-        if ($val['pid'] == $pid) {
+    foreach ($data as $val)
+    {
+        if ($val['pid'] == $pid)
+        {
             $val['level'] = $level;
             $tree[] = $val;
             toList($data, $val['id'], $level + 1);
@@ -82,12 +94,15 @@ function toList($data, $pid = 0, $level = 1)
     return $tree;
 }
 
+//获取父级分类
 function getParent($data, $id)
 {
     $arr = array();
 
-    foreach ($data as $v) {
-        if ($v['id'] == $id) {
+    foreach ($data as $v)
+    {
+        if ($v['id'] == $id)
+        {
             $arr[] = $v;
             $arr = array_merge(getParent($data, $v['pid']), $arr);
         }
