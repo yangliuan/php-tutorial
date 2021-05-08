@@ -8,13 +8,13 @@
 //最大可以达到 2GB
 
 //变量解析
- $str = 'test';
- $str = "test$str";
- echo $str,'<br>';
+$str = 'test';
+$str = "test$str";
+echo $str, '<br>';
 
- //解析数组,双引号中的索引数组不能加引号
- $arr = [1, 2, 3, 4, 'key' => 'sfsd'];
- echo "sdfd$arr[1]$arr[2]$arr[key]sdfds",'<br>';
+//解析数组,双引号中的索引数组不能加引号
+$arr = [1, 2, 3, 4, 'key' => 'sfsd'];
+echo "sdfd$arr[1]$arr[2]$arr[key]sdfds", '<br>';
 
 //解析对象属性
 class people
@@ -26,7 +26,7 @@ class people
     public $smith = 'Smith';
 }
 $people = new people();
-echo "adfadsd$people->john safd",'<br>';
+echo "adfadsd$people->john safd", '<br>';
 
 function test()
 {
@@ -34,7 +34,7 @@ function test()
 }
 //花括号
 $arr = [1, 'key' => ['k' => 223]];
-echo "sfas{test()}sdfsd{$people->jane}sdfsa{$arr['key']['k']}dafd{${test()}}",'<br>';
+echo "sfas{test()}sdfsd{$people->jane}sdfsa{$arr['key']['k']}dafd{${test()}}", '<br>';
 
 class beers
 {
@@ -46,10 +46,10 @@ $rootbeer = 'A & W';
 $ipa = 'Alexander Keith\'s';
 
 // 有效，输出： I'd like an A & W
-echo "I'd like an {${beers::softdrink}}\n",'<br>';
+echo "I'd like an {${beers::softdrink}}\n", '<br>';
 
 // 也有效，输出： I'd like an Alexander Keith's
-echo "I'd like an {${beers::$ale}}\n",'<br>';
+echo "I'd like an {${beers::$ale}}\n", '<br>';
 
 //特殊字符
 $str = "\n\r\t";
@@ -60,7 +60,7 @@ $str = <<<EOD
 sfjasijfisdj
 234 sdfd $str
 EOD;
-echo $str,'<br>';
+echo $str, '<br>';
 
 //nowdoc 类似于单引号
 echo <<<'EOT'
@@ -71,15 +71,29 @@ EOT;
 
 //数组方式访问字符串
 $foo = 'test';
-echo $foo[0],'<br>';
+echo $foo[0], '<br>';
 $foo[0] = 'e';
-echo $foo[0],'<br>';
+echo $foo[0], '<br>';
 
 //整型转字符串
 $foo = 1;
-echo (string) $foo,'<br>';
-echo strval($foo),'<br>';
+echo (string) $foo, '<br>';
+echo strval($foo), '<br>';
 
 //浮点转字符串
 var_dump((string) 1.33);
+echo '<br>';
+
+
+//获取第一个字符
+$str = '1ssfds3';
+var_dump($str[0]);
+echo '<br>';
+var_dump(substr($str, 0, 1));
+echo '<br>';
+//多字节字符串
+$str = '你好PHP';
+var_dump($str[0]);
+echo '<br>';
+var_dump(mb_substr($str, 0, 1));
 echo '<br>';
