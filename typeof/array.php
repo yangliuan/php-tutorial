@@ -85,3 +85,20 @@ class B extends A
 
 var_dump((array) new B());
 echo '<br>';
+echo '<hr>';
+echo 'php遍历多维数组','<br>';
+$arrs = [
+    ['0.00','a'],
+    ['abc',1.1],
+    [1,'sfsdfds'],
+    [2]
+];
+var_dump('原始数组', $arrs);
+echo '<br>';
+foreach ($arrs as [$a,$b]) {
+    echo $a,' ',$b,'<br>';
+}
+echo 'list函数','<br>';
+foreach ($arrs as list($a, $b)) {
+    echo $a,' ',$b,'<br>';
+}
