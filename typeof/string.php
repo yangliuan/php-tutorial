@@ -95,5 +95,7 @@ echo '<br>';
 $str = '你好PHP';
 var_dump($str[0]);
 echo '<br>';
+echo '<br>';
+var_dump(substr($str, 0, 1));
 var_dump(mb_substr($str, 0, 1));
 echo '<br>';
