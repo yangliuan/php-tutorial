@@ -51,8 +51,10 @@ function printTree(&$tree)
     if (!isset($tree[''])) {
         die('No root classes!!!');
     }
+    
     printLeaves($tree, '', 0);
 }
+
 function printLeaves(&$tree, $parent, $level)
 {
     if (isset($tree[$parent])) {
@@ -61,6 +63,7 @@ function printLeaves(&$tree, $parent, $level)
         natcasesort($leaves);
         $leaves = array_values($leaves);
         $count = count($leaves);
+
         for ($i = 0; $i < $count; ++$i) {
             $leaf = $leaves[$i];
             echo str_repeat('  ', $level), $leaf, "\n";
