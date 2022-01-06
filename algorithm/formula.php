@@ -1,10 +1,10 @@
 <?php
 /**
- *php实现计算公式计算数据
+ *php eval函数实现计算公式计算数据
  */
 
 //方法一
-list($P, $L) = [5,6];
+[$P, $L] = [5,6];
 $formula = '$result = ';
 $formula .= '$P/2+$L*3+23';
 $formula .= ';';
