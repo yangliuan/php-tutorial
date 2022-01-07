@@ -17,8 +17,6 @@ preg_match($imgpreg, $str, $img);
 // 假如待选变量：  ID,NUM,TOTAL，AVL TEST
 // 正确的公式例子：ID*NUM+(TOTAL/AVL)*0.5
 // 错误的公式例子：ID**|0.5
-// $exp = 'ID*NUM+(TOTAL/AVL)*0.5';
-// $params = [ 'ID' => 1,'TOTAL' => 1,'AVL' => 1,'NUM' => 1 ];
 
 /**
  * 正则表表达式测试，匹配到数据返回true,反之false
@@ -30,7 +28,7 @@ preg_match($imgpreg, $str, $img);
 function preg_match_all_test($pattern, $subject)
 {
 	preg_match_all($pattern, $subject, $match);
-	var_dump($match);
+
 	if (count($match[0]) > 0) {
 		return true;
 	}
@@ -85,13 +83,40 @@ function verifyExp(string $exp, array $params)
 	}
 
 	//错误情况，括号不配对
+	$str_len = strlen($exp);
+	$stack = [];
 
+	for ($i=0; $i < $str_len; $i++) {
+		$item = $exp[$i];
+		if ($item === '(') {
+			array_push($stack, $item);
+		} elseif ($item === ')') {
+			if (count($stack)>0) {
+				array_pop($stack);
+			} else {
+				return false;
+			}
+		}
+	}
+
+	if (count($stack) > 0) {
+		return false;
+	}
 
 	//错误情况，变量没有来自“待选公式变量”
+	$arr = preg_split('/[\(\)\+\-\*\/]{1,}/', $exp);
+
+	foreach ($arr as $key => $value) {
+		if (preg_match_all_test('/[A-Z]/i', $value) && !isset($params[$value])) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
-
-
-//echo '<pre>';
+echo '<pre>';
+$exp = 'ID*NUM+(TOTAL/AVL)*0.5';
+$params = [ 'ID' => 1,'TOTAL' => 1,'AVL' => 1,'NUM' => 1];
 $result = verifyExp($exp, $params);
-//var_dump($result);
+var_dump($result);
