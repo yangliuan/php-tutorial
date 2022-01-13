@@ -4,30 +4,31 @@
  * 将用户输入的表达式转为逆波兰表达式，进行计算
  * REF:https://blog.csdn.net/lambert310/article/details/77461047
  */
-class SuffixExpression
+class SuffixExpressionCalculate
 {
 	//正则表达式，用于将表达式字符串，解析为单独的运算符和操作项
 	public const PATTERN_EXP = '/((?:[a-zA-Z0-9_]+)|(?:[\(\)\+\-\*\/])){1}/';
-	public const EXP_PRIORITIES = ['+' => 1, '-' => 1, '*' => 2, '/' => 2, "(" => 0, ")" => 0];
+
+	public const EXP_PRIORITIES = ['+' => 1, '-' => 1, '*' => 2, '/' => 2, '(' => 0, ')' => 0];
 
 	/**
 	 * 公式计算
 	 *
 	 * @param string $exp 普通表达式，例如 a+b*(c+d)
 	 * @param array $exp_values 表达式对应数据内容，例如 ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]
-	 * @return void
+	 * @return int
 	 */
 	public static function calculate($exp, $exp_values)
 	{
-		$exp_arr = self::parse_exp($exp);//将表达式字符串解析为列表
+		$exp_arr = self::parseExp($exp); //将表达式字符串解析为列表
 
-		if (!is_array($exp_arr)) {
-			return null;
+		if (! is_array($exp_arr)) {
+			return 0;
 		}
 
 		$output_queue = self::nifix2rpn($exp_arr);
 
-		return self::calculate_value($output_queue, $exp_values);
+		return self::calculateValue($output_queue, $exp_values);
 	}
 
 	/**
@@ -36,7 +37,7 @@ class SuffixExpression
 	 * @param string $exp 普通表达式
 	 * @return mixed
 	 */
-	protected static function parse_exp($exp)
+	protected static function parseExp($exp)
 	{
 		$match = [];
 		preg_match_all(self::PATTERN_EXP, $exp, $match);
@@ -61,14 +62,14 @@ class SuffixExpression
 
 		foreach ($input_queue as $input) {
 			if (in_array($input, array_keys(self::EXP_PRIORITIES))) {
-				if ($input == "(") {
+				if ($input == '(') {
 					array_push($exp_stack, $input);
 					continue;
 				}
 
-				if ($input == ")") {
+				if ($input == ')') {
 					$tmp_exp = array_pop($exp_stack);
-					while ($tmp_exp && $tmp_exp != "(") {
+					while ($tmp_exp && $tmp_exp != '(') {
 						array_push($output_queue, $tmp_exp);
 						$tmp_exp = array_pop($exp_stack);
 					}
@@ -104,7 +105,7 @@ class SuffixExpression
 	 * @param array $exp_values 表达式对应数据内容
 	 * @return mixed
 	 */
-	protected static function calculate_value($output_queue, $exp_values)
+	protected static function calculateValue($output_queue, $exp_values)
 	{
 		$res_stack = [];
 
@@ -144,5 +145,5 @@ class SuffixExpression
 $exp = "a+b*(c+d)+6/2+d-2";
 $exp_arr = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 
-$result = SuffixExpression::calculate($exp, $exp_arr);
+$result = SuffixExpressionCalculate::calculate($exp, $exp_arr);
 echo '运算结果:',$result,PHP_EOL;
