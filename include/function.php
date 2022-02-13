@@ -6,3 +6,4 @@ function print_memory_info($msg, $real_usage = false)
 
     return memory_get_usage($real_usage);
 }
+
