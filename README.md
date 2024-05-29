@@ -1,11 +1,8 @@
-# php language reference
+# php tutorial
 
-**温故而知新**
+### code demo from php manual 
+- [english](https://www.php.net/manual/en/)
+- [简体中文](https://www.php.net/manual/zh/) 
 
-#### 项目介绍
-
-php 语言 参考 
-
-各种函数扩展语言特性的demo
-
-各种功能应用
+### algorithm
+[algorithm-php](https://github.com/m9rco/algorithm-php)
